@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const uploadRecording = async (recordingBlob) => {
     try {
-        let file = new File([recordingBlob], 'recording.webm', { type: 'audio/webm' });
+        let file = new File([recordingBlob], 'recording.mp3', { type: 'audio/mp3' });
         let formData = new FormData();
         formData.append('file', file);
 

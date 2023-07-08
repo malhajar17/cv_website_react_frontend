@@ -27,7 +27,7 @@ const recordingHandler = {
     },
 
     handleRecordingStop: (onComplete) => {
-        const blob = new Blob(recordingHandler.chunks, { type: "audio/webm" });
+        const blob = new Blob(recordingHandler.chunks, { type: "audio/mp3" });
         recordingHandler.chunks = [];
 
         if (typeof onComplete === "function") {
