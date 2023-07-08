@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const uploadRecording = async (recordingBlob) => {
+const uploadRecording = async (recordingBlob, mimeType) => {
     try {
-        let file = new File([recordingBlob], 'recording.mp3', { type: 'audio/mp3' });
+        let file = new File([recordingBlob], 'recording', { type: mimeType });
         let formData = new FormData();
         formData.append('file', file);
 
@@ -20,6 +20,7 @@ const uploadRecording = async (recordingBlob) => {
         console.error(error);
     }
 };
+
 
 const fetchAudio = async () => {
     try {
