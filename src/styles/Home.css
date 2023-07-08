@@ -1,5 +1,7 @@
 .image-lower {
   margin-bottom: -5%;
+  overflow: hidden;
+  ;
 }
 
 .u-section-1 {
@@ -118,7 +120,7 @@
 }
 
 
-.u-section-1 .u-image-1.talking {
+.u-section-1 .talking {
   min-height: 723px;
   min-width: 400px;
 
