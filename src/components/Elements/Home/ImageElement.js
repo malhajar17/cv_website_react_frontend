@@ -3,8 +3,12 @@ import { animated, useSpring } from "react-spring";
 import thoughtBubbleImage from "../../../assets/thought_bubble.png";
 
 const ImageElement = ({ startInterview, onAnimationComplete, state }) => {
+    const isMobileDevice = () => {
+        return /Mobi|Android|iPhone/i.test(navigator.userAgent);
+    };
+
     const animatePhoto = useSpring({
-        transform: startInterview && !isMobileDevice() ?  "translateX(-55%)" : "translateX(70%)",
+        transform: startInterview && !isMobileDevice() ? "translateX(-55%)" : "translateX(70%)",
         from: { transform: "translateX(-100%)" },
         config: { duration: 1000 },
         immediate: !startInterview,
@@ -15,7 +19,7 @@ const ImageElement = ({ startInterview, onAnimationComplete, state }) => {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
-        if (state === "stopped_Recording") {
+        if (state === "stopped_recording") {
             const interval = setInterval(() => {
                 setIndex((prevIndex) => (prevIndex + 1) % 3);
             }, 1000);
@@ -57,15 +61,20 @@ const ImageElement = ({ startInterview, onAnimationComplete, state }) => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const isMobileDevice = () => {
-        return /Mobi|Android|iPhone/i.test(navigator.userAgent);
-    };
+    useEffect(() => {
+        console.log(navigator.userAgent)
+        if (isMobileDevice()) {
+            if (imageRef.current) {
+                imageRef.current.style.transform = "translateX(-65%)";
+            }
+        }
+    }, []);
 
     return (
         <animated.div className="" style={animatePhoto}>
             <div
                 ref={imageRef}
-                className={`u-image-1 ${state === "speaking" ? "talking" : ""}`}
+                className={`u-image-1 ${state === "speaking" ? "talking" : ""} ${isMobileDevice() ? "mobile-device" : ""}`}
             >
                 <div className="u-container-layout-2"></div>
                 {state === "stopped_recording" && (
