@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to right, #888888, #000000);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 2%;
+    margin-bottom: 3em;
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.photo-cv-container {
+    position: relative;
+    width: 32%;
+    padding-bottom: 32%;
+    margin-right: 2%;
+}
+
+.photo {
+    position: absolute;
+    top: -15%;
+    /* Adjusted to position it slightly higher */
+    left: 0;
+    width: 20%;
+    /* Reduced size */
+    text-align: center;
+    z-index: 10;
+}
+
+.photo img {
+    max-width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cv {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.cv img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.form-container {
+    flex: 1;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    width: 100%;
+    text-align: left;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+    font-size: 1.2em;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="checkbox"] {
+    padding-left: 12px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #6c63ff;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background-color: #4caf50;
+    /* Updated color */
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #888888;
+}
+
+header,
+footer {
+    display: block;
+    text-align: center;
+    color: #888;
+    margin-top: 20px;
+}

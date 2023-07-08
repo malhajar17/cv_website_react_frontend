@@ -1,0 +1,144 @@
+.footer {
+    background-color: #333;
+    padding: 10px;
+    color: white;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+}
+
+.start-recording,
+.stop-recording {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.stop-recording {
+    background-color: #fbbc05;
+    /* Yellow color */
+}
+
+.start-recording:hover,
+.stop-recording:hover {
+    background-color: #bf1e2e;
+    /* Darker red color on hover */
+}
+
+.start-recording-button img {
+    width: 32px;
+    height: 32px;
+    margin-bottom: -4px;
+}
+
+.stop-recording img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1px;
+}
+
+.end-interview {
+    padding: 10px;
+    background-color: #625b5b;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: auto;
+}
+
+.start-recording:hover,
+.end-interview:hover {
+    background-color: #555;
+}
+
+.recording-text {
+    margin-right: 20px;
+}
+
+.recording-container {
+    display: flex;
+    align-items: center;
+}
+
+.thought-bubble {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 200px;
+    margin-bottom: 50px;
+    bottom: 500px;
+
+    /* You can adjust this */
+}
+
+.bubble {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    margin-left: 150px;
+    bottom: 500px;
+}
+
+.bubble:nth-child(1) {
+    animation: fade 3s infinite;
+    left: -10px;
+    /* Adjust the value as needed */
+}
+
+.cloud {
+    width: 50%;
+    height: 25%;
+    background: white;
+    border-radius: 50px;
+    display: flex;
+    top: 0;
+    left: 100px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 0px;
+    margin-left: 400px;
+
+    /* Adjust this to create space between the cloud and the bubbles */
+}
+
+
+@keyframes fade {
+    0% {
+        opacity: 1;
+    }
+
+    33% {
+        opacity: 0;
+    }
+
+    66% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.bubble:nth-child(1) {
+    animation: fade 1s infinite;
+}
+
+.bubble:nth-child(2) {
+    animation: fade 4s 2s infinite;
+}
+
+.bubble:nth-child(3) {
+    animation: fade 4s 3s infinite;
+}
