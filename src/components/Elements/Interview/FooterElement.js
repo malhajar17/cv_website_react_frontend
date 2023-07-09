@@ -3,7 +3,7 @@ import { useSpring, animated } from "react-spring";
 import recordingHandler from "../../../handlers/interview/recordingHandler";
 import recordingService from "../../../services/recordingService";
 
-import dummyWav from '../../../assets/generated.wav';
+import dummyWav from '../../../assets/dummy.wav';
 
 const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => {
     const [isRecording, setIsRecording] = useState(false);
@@ -61,6 +61,7 @@ const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => 
                     // Replace source when fetch completes
                     audio.src = fetchedAudioUrl;
                     audio.load();
+                    audio.play()
                 });
             }).catch(e => console.error('Playback failed:', e));
         }
