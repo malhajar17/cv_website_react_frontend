@@ -48,6 +48,8 @@ const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => 
                 recordingService.fetchAudio().then(fetchedAudioUrl => {
                     // Replace source when fetch completes
                     audio.src = fetchedAudioUrl;
+                    audio.load();
+                    audio.play()
                     audio.onplay = () => {
                         setIsPlaying(true);
                         onIsPlayingChange(true);
@@ -59,8 +61,6 @@ const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => 
                         onIsPlayingChange(false);
                         onStateChange("stopped_speaking");
                     };
-                    audio.load();
-                    audio.play()
                 });
             }).catch(e => console.error('Playback failed:', e));
         }
