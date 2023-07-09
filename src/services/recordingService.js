@@ -7,8 +7,8 @@ const uploadRecording = async (recordingBlob) => {
         let formData = new FormData();
         formData.append('file', file);
 
-        //const url = ' https://malhajar-cv-backend.azurewebsites.net/session_recording';
-        const url = "http://127.0.0.1:5000/session_recording";
+        const url = ' https://malhajar-cv-backend.azurewebsites.net/session_recording';
+        //const url = "http://127.0.0.1:5000/session_recording";
         const result = await axios.post(url, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
