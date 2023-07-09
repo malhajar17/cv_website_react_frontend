@@ -43,23 +43,22 @@ const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => 
             // Create new audio object and start playback with a dummy source
             let audio = new Audio(dummyWav);
 
-            audio.onplay = () => {
-                setIsPlaying(true);
-                onIsPlayingChange(true);
-                onStateChange("speaking");
-            };
-
-            audio.onended = () => {
-                setIsPlaying(false);
-                onIsPlayingChange(false);
-                onStateChange("stopped_speaking");
-            };
-
             // Start playback immediately
             audio.play().then(() => {
                 recordingService.fetchAudio().then(fetchedAudioUrl => {
                     // Replace source when fetch completes
                     audio.src = fetchedAudioUrl;
+                    audio.onplay = () => {
+                        setIsPlaying(true);
+                        onIsPlayingChange(true);
+                        onStateChange("speaking");
+                    };
+        
+                    audio.onended = () => {
+                        setIsPlaying(false);
+                        onIsPlayingChange(false);
+                        onStateChange("stopped_speaking");
+                    };
                     audio.load();
                     audio.play()
                 });
