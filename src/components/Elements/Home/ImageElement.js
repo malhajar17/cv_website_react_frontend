@@ -96,7 +96,7 @@
         }, [state]);
 
         const thoughtBubbleStyle = isMobileDevice() 
-        ? { transform: 'scale(0.7) translateX(-30px) translateY(-30px)' } 
+        ? { transform: 'scale(0.7) translateX(-40px) translateY(30px)' } 
         : {};
 
         return (
