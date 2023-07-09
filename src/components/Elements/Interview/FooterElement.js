@@ -23,9 +23,38 @@ const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => 
 
     };
 
-    const handleRecordingComplete = async (blob) => {
-        console.log("Recording stopped. Blob:", blob);
-        await recordingService.uploadRecording(blob)
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+const handleRecordingComplete = async (blob) => {
+    console.log("Recording stopped. Blob:", blob);
+    await recordingService.uploadRecording(blob);
+    
+    if (isMobile) {
+        // Create new audio object and start playback with a dummy source
+        let audio = new Audio('dummy.wav');
+
+        audio.onplay = () => {
+            setIsPlaying(true);
+            onIsPlayingChange(true);
+            onStateChange("speaking");
+        };
+
+        audio.onended = () => {
+            setIsPlaying(false);
+            onIsPlayingChange(false);
+            onStateChange("stopped_speaking");
+        };
+
+        // Start playback immediately
+        audio.play().then(() => {
+            recordingService.fetchAudio().then(fetchedAudioUrl => {
+                // Replace source when fetch completes
+                audio.src = fetchedAudioUrl;
+                audio.load();
+            });
+        }).catch(e => console.error('Playback failed:', e));
+    } else {
+        // For non-mobile clients, use the previous logic
         const fetchedAudioUrl = await recordingService.fetchAudio();
         // Create new audio object and play it
         let audio = new Audio(fetchedAudioUrl);
@@ -44,7 +73,9 @@ const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => 
 
         // Play the audio
         audio.play();
-    };
+    }
+};
+
     const startButtonContent = isRecording ? (
         <img
             src="https://img.icons8.com/sf-black-filled/64/stop-circled.png"

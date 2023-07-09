@@ -1,13 +1,14 @@
 import axios from 'axios';
 
-const uploadRecording = async (recordingBlob, mimeType) => {
+const uploadRecording = async (recordingBlob) => {
     try {
-        let file = new File([recordingBlob], 'recording', { type: mimeType });
+        // Here we directly specify 'audio/mpeg' as the MIME type for the MP3 file
+        let file = new File([recordingBlob], 'recording.mp3', { type: 'audio/mpeg' });
         let formData = new FormData();
         formData.append('file', file);
 
-        const url = ' https://malhajar-cv-backend.azurewebsites.net/session_recording';
-
+        //const url = ' https://malhajar-cv-backend.azurewebsites.net/session_recording';
+        const url = "http://127.0.0.1:5000/session_recording";
         const result = await axios.post(url, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -20,6 +21,7 @@ const uploadRecording = async (recordingBlob, mimeType) => {
         console.error(error);
     }
 };
+
 
 
 const fetchAudio = async () => {

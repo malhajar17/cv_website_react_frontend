@@ -4,7 +4,8 @@ const startInterviewService = {
 
     postInterviewRequest: async (formData) => {
         try {
-            const url = 'https://malhajar-cv-backend.azurewebsites.net/interview_registration';
+            //const url = 'https://malhajar-cv-backend.azurewebsites.net/interview_registration';
+            const url = " http://127.0.0.1:5000/interview_registration"
 
             const result = await axios.post(url, formData, {
                 headers: {
