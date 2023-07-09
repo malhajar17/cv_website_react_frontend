@@ -100,7 +100,8 @@
 .u-section-1 .u-image-1 {
   min-height: 723px;
   min-width: 30vw;
-  background-image: url("https://cvfrontendstorage.blob.core.windows.net/front-end-photos/Myproject.png");
+  background-image: url("https://cvfrontendstorage.blob.core.windows.net/front-end-photos/Myproject.png"); 
+
   background-position: 51.62% 100%;
   --animation-custom_in-translate_x: 300px;
   --animation-custom_in-translate_y: 0px;
@@ -124,7 +125,9 @@
   min-height: 723px;
   min-width: 400px;
 
-  background-image: url("https://cvfrontendstorage.blob.core.windows.net/front-end-photos/Mohamad_talking.png");
+  /*background-image: url("https://cvfrontendstorage.blob.core.windows.net/front-end-photos/Mohamad_talking.png");*/
+  background-image: url("https://cvfrontendstorage.blob.core.windows.net/front-end-photos/Mohamad_talking.gif");
+
   background-position: 51.62% 100%;
   --animation-custom_in-translate_x: 300px;
   --animation-custom_in-translate_y: 0px;
