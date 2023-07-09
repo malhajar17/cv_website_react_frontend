@@ -6,6 +6,7 @@ const ImageElement = ({ startInterview, onAnimationComplete, state }) => {
     const isMobileDevice = () => {
         return /Mobi|Android|iPhone/i.test(navigator.userAgent);
     };
+    const [animationKey, setAnimationKey] = useState(0);
 
     const animatePhoto = useSpring({
         transform: startInterview && !isMobileDevice() ? "translateX(-55%)" : "translateX(70%)",
@@ -70,10 +71,19 @@ const ImageElement = ({ startInterview, onAnimationComplete, state }) => {
         }
     }, []);
 
+    // Add new state for the animation key
+
+    useEffect(() => {
+        if (state === "speaking") {
+            setAnimationKey(prevKey => prevKey + 1);
+        }
+    }, [state]);
+
     return (
         <animated.div className="" style={animatePhoto}>
             <div
                 ref={imageRef}
+                key={animationKey}
                 className={`u-image-1 ${state === "speaking" ? "talking" : ""} ${isMobileDevice() ? "mobile-device" : ""}`}
             >
                 <div className="u-container-layout-2"></div>
