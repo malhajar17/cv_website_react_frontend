@@ -6,7 +6,6 @@ const ImageElement = ({ startInterview, onAnimationComplete, state }) => {
     const isMobileDevice = () => {
         return /Mobi|Android|iPhone/i.test(navigator.userAgent);
     };
-    const [animationKey, setAnimationKey] = useState(0);
 
     const animatePhoto = useSpring({
         transform: startInterview && !isMobileDevice() ? "translateX(-55%)" : "translateX(70%)",
@@ -71,19 +70,31 @@ const ImageElement = ({ startInterview, onAnimationComplete, state }) => {
         }
     }, []);
 
-    // Add new state for the animation key
+    // Ref to store the previous state
+    const prevState = useRef(state);
 
     useEffect(() => {
-        if (state === "speaking") {
-            setAnimationKey(prevKey => prevKey + 1);
+        if (prevState.current !== "speaking" && state === "speaking") {
+            if (imageRef.current) {
+                // Remove the 'talking' class
+                imageRef.current.classList.remove('talking');
+
+                // Force a reflow to make sure the removal of the class is rendered
+                void imageRef.current.offsetWidth;
+
+                // Add the 'talking' class again to trigger the animation
+                imageRef.current.classList.add('talking');
+            }
         }
+
+        // Update the previous state
+        prevState.current = state;
     }, [state]);
 
     return (
         <animated.div className="" style={animatePhoto}>
             <div
                 ref={imageRef}
-                key={animationKey}
                 className={`u-image-1 ${state === "speaking" ? "talking" : ""} ${isMobileDevice() ? "mobile-device" : ""}`}
             >
                 <div className="u-container-layout-2"></div>
