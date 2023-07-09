@@ -95,6 +95,7 @@ const ImageElement = ({ startInterview, onAnimationComplete, state }) => {
         <animated.div className="" style={animatePhoto}>
             <div
                 ref={imageRef}
+                key={state} 
                 className={`u-image-1 ${state === "speaking" ? "talking" : ""} ${isMobileDevice() ? "mobile-device" : ""}`}
             >
                 <div className="u-container-layout-2"></div>
