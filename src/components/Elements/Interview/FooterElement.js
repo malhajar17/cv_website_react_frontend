@@ -3,7 +3,7 @@ import { useSpring, animated } from "react-spring";
 import recordingHandler from "../../../handlers/interview/recordingHandler";
 import recordingService from "../../../services/recordingService";
 
-import dummyWav from '../../../assets/dummy.wav';
+import dummyWav from '../../../assets/generated.wav';
 
 const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => {
     const [isRecording, setIsRecording] = useState(false);
