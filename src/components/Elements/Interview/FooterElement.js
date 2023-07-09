@@ -1,14 +1,70 @@
-
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useSpring, animated } from "react-spring";
 import recordingHandler from "../../../handlers/interview/recordingHandler";
 import recordingService from "../../../services/recordingService";
 
-
+import dummyWav from '../../../assets/dummy.wav';
 
 const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => {
     const [isRecording, setIsRecording] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
+
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    const handleRecordingComplete = async (blob) => {
+        console.log("Recording stopped. Blob:", blob);
+        await recordingService.uploadRecording(blob);
+        
+        if (!isMobile) {
+            // For non-mobile clients, use the previous logic
+            const fetchedAudioUrl = await recordingService.fetchAudio();
+            // Create new audio object and play it
+            let audio = new Audio(fetchedAudioUrl);
+
+            audio.onplay = () => {
+                setIsPlaying(true);
+                onIsPlayingChange(true);
+                onStateChange("speaking");
+            };
+
+            audio.onended = () => {
+                setIsPlaying(false);
+                onIsPlayingChange(false);
+                onStateChange("stopped_speaking");
+            };
+
+            // Play the audio
+            audio.play();
+        }
+    };
+
+    const playIfMobile = () => {
+        if (isMobile) {
+            // Create new audio object and start playback with a dummy source
+            let audio = new Audio(dummyWav);
+
+            audio.onplay = () => {
+                setIsPlaying(true);
+                onIsPlayingChange(true);
+                onStateChange("speaking");
+            };
+
+            audio.onended = () => {
+                setIsPlaying(false);
+                onIsPlayingChange(false);
+                onStateChange("stopped_speaking");
+            };
+
+            // Start playback immediately
+            audio.play().then(() => {
+                recordingService.fetchAudio().then(fetchedAudioUrl => {
+                    // Replace source when fetch completes
+                    audio.src = fetchedAudioUrl;
+                    audio.load();
+                });
+            }).catch(e => console.error('Playback failed:', e));
+        }
+    };
 
     const handleStartRecording = () => {
         setIsRecording(true);
@@ -20,61 +76,8 @@ const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => 
         setIsRecording(false);
         onStateChange("stopped_recording");
         recordingHandler.stopRecording();
-
+        playIfMobile();
     };
-
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-const handleRecordingComplete = async (blob) => {
-    console.log("Recording stopped. Blob:", blob);
-    await recordingService.uploadRecording(blob);
-    
-    if (isMobile) {
-        // Create new audio object and start playback with a dummy source
-        let audio = new Audio('dummy.wav');
-
-        audio.onplay = () => {
-            setIsPlaying(true);
-            onIsPlayingChange(true);
-            onStateChange("speaking");
-        };
-
-        audio.onended = () => {
-            setIsPlaying(false);
-            onIsPlayingChange(false);
-            onStateChange("stopped_speaking");
-        };
-
-        // Start playback immediately
-        audio.play().then(() => {
-            recordingService.fetchAudio().then(fetchedAudioUrl => {
-                // Replace source when fetch completes
-                audio.src = fetchedAudioUrl;
-                audio.load();
-            });
-        }).catch(e => console.error('Playback failed:', e));
-    } else {
-        // For non-mobile clients, use the previous logic
-        const fetchedAudioUrl = await recordingService.fetchAudio();
-        // Create new audio object and play it
-        let audio = new Audio(fetchedAudioUrl);
-
-        audio.onplay = () => {
-            setIsPlaying(true);
-            onIsPlayingChange(true);
-            onStateChange("speaking");
-        };
-
-        audio.onended = () => {
-            setIsPlaying(false);
-            onIsPlayingChange(false);
-            onStateChange("stopped_speaking");
-        };
-
-        // Play the audio
-        audio.play();
-    }
-};
 
     const startButtonContent = isRecording ? (
         <img
@@ -87,30 +90,32 @@ const handleRecordingComplete = async (blob) => {
         </div>
     );
 
-
     const fade = useSpring({
         opacity: startInterview ? 1 : 0,
         config: { duration: 1000 },
     });
+    
     if (!startInterview) {
         return null; // Render nothing if startInterview is false
     }
+    
     return (
         <animated.footer style={fade} className="footer">
             <div className="footer-content">
-
                 <div
                     className={`start-recording ${isRecording ? "stop-recording" : ""}`}
                     onClick={isRecording ? handleStopRecording : handleStartRecording}
                 >
                     {startButtonContent}
                 </div>
-                <div className="recording-text" onClick={isRecording ? handleStopRecording : handleStartRecording}>{isRecording ? "Stop Recording" : "Start Recording"}</div>
+                <div className="recording-text" onClick={isRecording ? handleStopRecording : handleStartRecording}>
+                    {isRecording ? "Stop Recording" : "Start Recording"}
+                </div>
                 <div className="end-interview" onClick={handleStopRecording}>
                     End Interview
                 </div>
             </div>
-        </animated.footer >
+        </animated.footer>
     );
 };
 
