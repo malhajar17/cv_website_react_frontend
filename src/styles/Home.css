@@ -125,8 +125,7 @@
   min-height: 723px;
   min-width: 400px;
 
-  /*background-image: url("https://cvfrontendstorage.blob.core.windows.net/front-end-photos/Mohamad_talking.png");*/
-  background-image: url("https://cvfrontendstorage.blob.core.windows.net/front-end-photos/Mohamad_talking.gif");
+  background-image: url("https://cvfrontendstorage.blob.core.windows.net/front-end-photos/Mohamad_talking_15fps.png");
 
   background-position: 51.62% 100%;
   --animation-custom_in-translate_x: 300px;
