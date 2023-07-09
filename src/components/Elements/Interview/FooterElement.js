@@ -49,12 +49,12 @@ const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => 
                     // Replace source when fetch completes
                     audio.src = fetchedAudioUrl;
                     audio.load();
-                    audio.play()
                     audio.onplay = () => {
                         setIsPlaying(true);
                         onIsPlayingChange(true);
                         onStateChange("speaking");
                     };
+                    audio.play()
         
                     audio.onended = () => {
                         setIsPlaying(false);
