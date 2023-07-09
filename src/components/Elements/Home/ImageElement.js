@@ -6,10 +6,7 @@
         const isMobileDevice = () => {
             return /Mobi|Android|iPhone/i.test(navigator.userAgent);
         };
-        const getBackgroundImageUrl = () => {
-            return state === "speaking" ? isMobileDevice() ? "https://cvfrontendstorage.blob.core.windows.net/front-end-photos/mohamed_talking_15fps.png"
-              : "https://cvfrontendstorage.blob.core.windows.net/front-end-photos/Mohamad_talking.png" : "https://cvfrontendstorage.blob.core.windows.net/front-end-photos/Myproject.png";
-        };
+
 
         const animatePhoto = useSpring({
             transform: startInterview && !isMobileDevice() ? "translateX(-55%)" : "translateX(70%)",
@@ -96,7 +93,7 @@
         }, [state]);
 
         const thoughtBubbleStyle = isMobileDevice() 
-        ? { transform: 'scale(0.7) translateX(-40px) translateY(30px)' } 
+        ? { transform: 'scale(0.6) translateX(-40px) translateY(60px)' } 
         : {};
 
         return (
@@ -104,7 +101,15 @@
                 <div
                     ref={imageRef}
                     className={`u-image-1 ${state === "speaking" ? "talking"  : ""} ${isMobileDevice() ? "mobile-device" : ""}`}
-                    style={{...animatePhoto, backgroundImage: `url(${getBackgroundImageUrl()})`}}
+                    style={{
+                        ...animatePhoto,
+                        backgroundImage: state == "speaking" ? 
+                            (isMobileDevice() ?  
+                            'url("https://cvfrontendstorage.blob.core.windows.net/front-end-photos/mohamed_talking_15fps.png")' 
+                            : 'url("https://cvfrontendstorage.blob.core.windows.net/front-end-photos/Mohamad_talking.png")')
+                        : 'url("https://cvfrontendstorage.blob.core.windows.net/front-end-photos/Myproject.png")'
+                    }}
+                    
                 >
                     <div className="u-container-layout-2"></div>
                     {state === "stopped_recording" && (
