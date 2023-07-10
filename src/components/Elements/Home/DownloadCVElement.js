@@ -49,9 +49,16 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
         opacity: startInterview ? 0 : 1,
         config: { duration: 1000 },
     });
+    const isMobileDevice = () => {
+        return /Mobi|Android|iPhone/i.test(navigator.userAgent);
+    };
+
+    const cvElementStyle = isMobileDevice() 
+        ? { transform: 'scale(0.7)translateY(240px)', transition: 'transform 0.3s ease-in-out' } 
+        : {};
 
     return (
-        <animated.div style={fade} className="u-align-left u-container-style u-layout-cell u-size-27-lg u-size-27-xl u-size-60-md u-size-60-sm u-size-60-xs u-layout-cell-1">
+        <animated.div style={{ ...fade, ...cvElementStyle }} className="u-align-left u-container-style u-layout-cell u-size-27-lg u-size-27-xl u-size-60-md u-size-60-sm u-size-60-xs u-layout-cell-1">
             <div className="u-container-layout u-container-layout-1">
                 {/* Form Fields */}
                 <h3 className="u-align-left u-text u-text-body-alt-color u-text-1">I’m a Machine Learning Engineer</h3>
