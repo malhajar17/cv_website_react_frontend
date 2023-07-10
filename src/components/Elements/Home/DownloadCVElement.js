@@ -54,7 +54,7 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
     };
 
     const cvElementStyle = isMobileDevice() 
-        ? { transform: 'scale(0.6)translateY(400px)', transition: 'transform 0.3s ease-in-out' } 
+        ? { transform: 'scale(0.6)translateY(330px)', transition: 'transform 0.3s ease-in-out' } 
         : {};
 
     return (
