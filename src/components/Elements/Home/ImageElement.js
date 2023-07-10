@@ -93,7 +93,7 @@
         }, [state]);
 
         const thoughtBubbleStyle = isMobileDevice() 
-        ? { transform: 'scale(0.6) margin-bottom: 100px;' } 
+        ? { transform: 'scale(0.6) translate(-30%, -70%);' } 
         : {};
 
         return (
