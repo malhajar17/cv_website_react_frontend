@@ -1,6 +1,5 @@
     import React, { useEffect, useState, useRef } from "react";
     import { animated, useSpring } from "react-spring";
-    import thoughtBubbleImage from "../../../assets/thought_bubble.png";
 
     const ImageElement = ({ startInterview, onAnimationComplete, state }) => {
         const isMobileDevice = () => {
@@ -10,15 +9,13 @@
         console .log(isMobileDevice())
 
         const animatePhoto = useSpring({
-            transform: startInterview && !isMobileDevice() ? "translateX(-55%)" : "translateX(70%)",
-            transform: isMobileDevice() ? "": "translateY(17%)",
-
+            transform: `${startInterview && !isMobileDevice() ? "translateX(-55%)" : "translateX(10%)"} ${!isMobileDevice() ? "translateY(17%)" : ""}`,
             from: { transform: "translateX(-100%)" },
             config: { duration: 1000 },
             immediate: !startInterview,
             onRest: onAnimationComplete,
-        });
-
+          });
+          
         const [opacity, setOpacity] = useState([1, 0, 0]);
         const [index, setIndex] = useState(0);
 
