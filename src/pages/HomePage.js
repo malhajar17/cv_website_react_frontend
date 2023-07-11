@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import HomeSection from '../components/Sections/HomeSection';
 import ExperienceSection from '../components/Sections/ExperienceSection';
 import CertificatesSection from '../components/Sections/CertificatesSection';
@@ -23,7 +23,7 @@ function App() {
             .then((response) => console.log(response))
             .catch((error) => console.error(error));
     }, []);
-    
+
     return (
         <div data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode" data-lang="en">
             <link
