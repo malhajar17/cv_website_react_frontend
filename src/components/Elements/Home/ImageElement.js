@@ -11,6 +11,8 @@
 
         const animatePhoto = useSpring({
             transform: startInterview && !isMobileDevice() ? "translateX(-55%)" : "translateX(70%)",
+            transform: isMobileDevice() ? "": "translateY(17%)",
+
             from: { transform: "translateX(-100%)" },
             config: { duration: 1000 },
             immediate: !startInterview,
