@@ -5,11 +5,12 @@
     const ImageElement = ({ startInterview, onAnimationComplete, state }) => {
         const isMobileDevice = () => {
             return /Mobi|Android|iPhone/i.test(navigator.userAgent);
+            
         };
-
+        console .log(isMobileDevice())
 
         const animatePhoto = useSpring({
-            transform: startInterview && !isMobileDevice() ? "translateX(-55%) translateY(17.5%)" : "translateX(40%) ",
+            transform: startInterview && !isMobileDevice() ? "translateX(-55%)" : "translateX(40%) translateY(17%)",
             from: { transform: "translateX(-100%)" },
             config: { duration: 1000 },
             immediate: !startInterview,
@@ -70,6 +71,10 @@
                 }
             }
         }, []);
+
+        const ImageElementStyle = !isMobileDevice() 
+        ? { transform: 'scale(0.6)translateY(350px)', transition: 'transform 0.3s ease-in-out' } 
+        : { transform: 'translateY(-180px)', transition: 'transform 0.3s ease-in-out', marginTop: '180px'};
 
         // Ref to store the previous state
         const prevState = useRef(state);
