@@ -4,6 +4,7 @@ import ExperienceSection from '../components/Sections/ExperienceSection';
 import CertificatesSection from '../components/Sections/CertificatesSection';
 import AboutMeSection from '../components/Sections/AboutMeSection';
 import SchedInterviewSection from '../components/Sections/SchedInterviewSection';
+import startUpService from "../services/startupService"
 
 import '.././styles/Contact.css';
 import '.././styles/About.css';
@@ -16,10 +17,13 @@ import '.././styles/Interview.css';
 import '../assets/images.png';
 
 function App() {
-    const [startInterview, setStartInterview] = useState(false);
-    console.log(startInterview)
-
-
+    const [startInterview, setStartInterview] = useState(false);    
+    useEffect(() => {
+        startUpService.warmupModel()
+            .then((response) => console.log(response))
+            .catch((error) => console.error(error));
+    }, []);
+    
     return (
         <div data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode" data-lang="en">
             <link
