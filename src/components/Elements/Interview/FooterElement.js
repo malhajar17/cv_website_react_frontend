@@ -78,7 +78,12 @@ const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => 
         recordingHandler.stopRecording();
         playIfMobile();
     };
-
+    const handleEndInterview = () => {
+        setIsRecording(false);
+        setIsPlaying(false);
+        onStateChange("end_interview");
+      };
+      
     const startButtonContent = isRecording ? (
         <img
             src="https://img.icons8.com/sf-black-filled/64/stop-circled.png"
@@ -98,6 +103,7 @@ const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => 
     if (!startInterview) {
         return null; // Render nothing if startInterview is false
     }
+
     
     return (
         <animated.footer style={fade} className="footer">
@@ -111,9 +117,10 @@ const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => 
                 <div className="recording-text" onClick={isRecording ? handleStopRecording : handleStartRecording}>
                     {isRecording ? "Stop Recording" : "Start Recording"}
                 </div>
-                <div className="end-interview" onClick={handleStopRecording}>
+                <div className="end-interview" onClick={handleEndInterview}>
                     End Interview
                 </div>
+                
             </div>
         </animated.footer>
     );

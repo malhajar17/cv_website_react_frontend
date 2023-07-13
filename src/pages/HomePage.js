@@ -13,6 +13,9 @@ import '.././styles/Post-Template.css';
 import '.././styles/Home.css';
 import '.././styles/Blog-Template.css';
 import '.././styles/Interview.css';
+import '.././styles/EndInterview.css';
+
+
 
 import '../assets/images.png';
 

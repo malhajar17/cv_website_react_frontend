@@ -3,7 +3,7 @@ import { useSpring, animated } from "react-spring";
 import ImageElement from "../Elements/Home/ImageElement";
 import DownloadCVElement from "../Elements/Home/DownloadCVElement";
 import FooterElement from "../Elements/Interview/FooterElement";
-
+import EndInterviewElement from "../Elements/Interview/EndInterviewElement";
 
 const HomeSection = ({ startInterview, setStartInterview }) => {
 
@@ -23,9 +23,17 @@ const HomeSection = ({ startInterview, setStartInterview }) => {
     const handleStateChange = (newState) => {
         setState(newState);
     };
+    const handleEndInterview = () => {
+        setStartInterview(false);
+        setState("not_started"); 
+      };
+    const handleEndInterviewClose = () => {
+        setState("occuring"); 
+      };
+    
     const sectionStyles = {
         height: "100vh", // Set the section's height to 100% of the viewport height
-    };
+    };  
     return (
         <section className="u-clearfix u-image u-valign-bottom u-section-1" id="carousel_6a3f" data-image-width="1980" data-image-height="1320" style={sectionStyles}>
             <div className="u-clearfix u-layout-wrap u-layout-wrap-1">
@@ -33,12 +41,14 @@ const HomeSection = ({ startInterview, setStartInterview }) => {
                     <div className="u-layout-row image-lower smaller-container">
                         <DownloadCVElement startInterview={startInterview} onStartInterview={handleStartInterview} />
                         <ImageElement startInterview={startInterview} onAnimationComplete={handleAnimationFinished} isPlaying={isPlaying} state={state} />
+                        {state === "end_interview" && <EndInterviewElement onEndInterview={handleEndInterview} onEndInterviewClose ={handleEndInterviewClose} />}
                     </div>
                 </div>
             </div>
             {animationFinished && (
                 <FooterElement startInterview={startInterview} onIsPlayingChange={handleIsPlayingChange} onStateChange={handleStateChange} />
             )}
+            
         </section>
 
     );
