@@ -5,7 +5,7 @@ import CertificatesSection from '../components/Sections/CertificatesSection';
 import AboutMeSection from '../components/Sections/AboutMeSection';
 import SchedInterviewSection from '../components/Sections/SchedInterviewSection';
 import startUpService from "../services/startupService"
-
+import {UserProvider} from "../contexts/UserContext"
 import '.././styles/Contact.css';
 import '.././styles/About.css';
 import '.././styles/nicepage.css';
@@ -28,6 +28,7 @@ function App() {
     }, []);
 
     return (
+        <UserProvider>
         <div data-home-page="Home.html" data-home-page-title="Home" class="u-body u-xl-mode" data-lang="en">
             <link
                 id="u-theme-google-font"
@@ -57,6 +58,7 @@ function App() {
                 )}
             </div>
         </div>
+        </UserProvider>
     );
 }
 

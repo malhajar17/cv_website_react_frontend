@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
-const EndInterviewElement = ({ onEndInterview,onEndInterviewClose }) => {
+const EndInterviewElement = ({ onEndInterview, onEndInterviewClose }) => {
+  const [feedback, setFeedback] = useState('');
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    onEndInterview();
-    // Handle the form submission logic here
+    onEndInterview(feedback);
   };
 
   const handleClose = () => {
-    onEndInterviewClose()
+    onEndInterviewClose();
+  };
+
+  const handleFeedbackChange = (e) => {
+    setFeedback(e.target.value);
   };
 
   return (
@@ -21,7 +26,13 @@ const EndInterviewElement = ({ onEndInterview,onEndInterviewClose }) => {
         <h3>Thank you for your participation!</h3>
         <p>We would love to hear about your experience. Please share your feedback:</p>
         <form onSubmit={handleFormSubmit}>
-          <textarea rows="4" placeholder="Your feedback..." required></textarea>
+          <textarea 
+            rows="4" 
+            placeholder="Your feedback..." 
+            required
+            value={feedback}
+            onChange={handleFeedbackChange}
+          ></textarea>
           <button type="submit">Submit</button>
         </form>
       </div>

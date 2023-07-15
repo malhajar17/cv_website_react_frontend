@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useContext,useEffect } from "react";
+import UserContext from "../../../contexts/UserContext";
 import { animated, useSpring } from 'react-spring';
 import StartInterviewFormHandler from "../../../handlers/home/startInterviewFormHandler";
 import startInterviewService from "../../../services/startInterviewService"
 
 const DownloadCVElement = ({ startInterview, onStartInterview }) => {
+    const {userSessionInfo, updateUserSessionInfo } = useContext(UserContext);
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -12,6 +14,9 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
     });
     const [highlightedFields, setHighlightedFields] = useState([]);
 
+    useEffect(() => {
+        console.log(userSessionInfo); // Log the updated userSessionInfo
+    }, [userSessionInfo]); 
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,7 +25,13 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
     const handleStartInterview = async () => {
         const errors = StartInterviewFormHandler.validateForm(formData);
         if (Object.keys(errors).length === 0) {
-            if (await startInterviewService.postInterviewRequest(formData) === true) {
+            const { accountID, sessionID, get_auth_ready } = await startInterviewService.postInterviewRequest(formData);
+            if (get_auth_ready === true) {
+                updateUserSessionInfo({
+                    accountID:accountID,
+                    sessionID:sessionID,
+                    sequence: 1,
+                  });
                 if (await startInterviewService.getAuthToken(formData) === true) {
                     onStartInterview();
                 }
@@ -28,19 +39,14 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
             else {
                 alert("Sorry, You have been blocked from performing interviews at the moment. Please send an email to fix this")
             }
-
-
         } else {
-            // Handle the form errors
-            console.log(Object.keys(errors));
+
             // Highlight the fields with errors
             const errorFields = Object.keys(errors).map((field) => StartInterviewFormHandler.getFieldIndex(field));
-            console.log(errorFields)
             setHighlightedFields(errorFields);
-            console.log(highlightedFields)
         }
     };
-
+    
     const isFieldHighlighted = (index) => {
         return highlightedFields.includes(index);
     };

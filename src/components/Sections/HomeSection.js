@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { useSpring, animated } from "react-spring";
 import ImageElement from "../Elements/Home/ImageElement";
 import DownloadCVElement from "../Elements/Home/DownloadCVElement";
 import FooterElement from "../Elements/Interview/FooterElement";
 import EndInterviewElement from "../Elements/Interview/EndInterviewElement";
+import UserContext from "../../contexts/UserContext"
+import endInterviewService from "../../services/endInterviewService";
 
 const HomeSection = ({ startInterview, setStartInterview }) => {
-
+    const {userSessionInfo, updateUserSessionInfo } = useContext(UserContext);
     const [animationFinished, setAnimationFinished] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
     const [state, setState] = useState("not_started");
@@ -23,9 +25,12 @@ const HomeSection = ({ startInterview, setStartInterview }) => {
     const handleStateChange = (newState) => {
         setState(newState);
     };
-    const handleEndInterview = () => {
+    const handleEndInterview = (review) => {
         setStartInterview(false);
         setState("not_started"); 
+        const sessionID = userSessionInfo.sessionID;
+        console.log(review)
+        endInterviewService.postEndInterviewRequest(sessionID, review);
       };
     const handleEndInterviewClose = () => {
         setState("occuring"); 

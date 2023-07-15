@@ -1,23 +1,49 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import { useSpring, animated } from "react-spring";
+import UserContext from "../../../contexts/UserContext";
 import recordingHandler from "../../../handlers/interview/recordingHandler";
 import recordingService from "../../../services/recordingService";
+import endinterviewService from "../../../services/endInterviewService"
 
 import dummyWav from '../../../assets/dummy.wav';
 
 const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => {
     const [isRecording, setIsRecording] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
+    const { userSessionInfo,updateUserSessionInfo } = useContext(UserContext);
+    const { sequence } = userSessionInfo;
 
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    React.useEffect(() => {
+        const handleBeforeUnload = async (event) => {
+          event.preventDefault();
+          // Get the sessionID from the userSessionInfo context
+          const sessionID = userSessionInfo.sessionID;
+    
+          await endinterviewService.postEndInterviewRequest({ sessionID, review: '' });
+    
+          // Older browsers require returnValue to be set
+          event.returnValue = '';
+        };
+    
+        // Add the beforeunload event listener when the component mounts
+        window.addEventListener('beforeunload', handleBeforeUnload);
+    
+        // Remove the event listener when the component unmounts
+        return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+      }, []);
 
+      
     const handleRecordingComplete = async (blob) => {
         console.log("Recording stopped. Blob:", blob);
-        await recordingService.uploadRecording(blob);
+        await recordingService.uploadRecording(blob,userSessionInfo.accountID, userSessionInfo.sessionID,userSessionInfo.sequence);
         
         if (!isMobile) {
             // For non-mobile clients, use the previous logic
-            const fetchedAudioUrl = await recordingService.fetchAudio();
+            const fetchedAudioUrl = await recordingService.fetchAudio(userSessionInfo.accountID, userSessionInfo.sessionID,userSessionInfo.sequence);
+            updateUserSessionInfo({
+                  sequence: sequence+1,
+                });
             // Create new audio object and play it
             let audio = new Audio(fetchedAudioUrl);
 
@@ -45,7 +71,10 @@ const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => 
 
             // Start playback immediately
             audio.play().then(() => {
-                recordingService.fetchAudio().then(fetchedAudioUrl => {
+                recordingService.fetchAudio(userSessionInfo.accountID, userSessionInfo.sessionID,userSessionInfo.sequence).then(fetchedAudioUrl => {
+                    updateUserSessionInfo({
+                        sequence: sequence+1,
+                      });
                     // Replace source when fetch completes
                     audio.src = fetchedAudioUrl;
                     audio.load();
@@ -82,8 +111,9 @@ const FooterElement = ({ startInterview, onIsPlayingChange, onStateChange }) => 
         setIsRecording(false);
         setIsPlaying(false);
         onStateChange("end_interview");
+
       };
-      
+
     const startButtonContent = isRecording ? (
         <img
             src="https://img.icons8.com/sf-black-filled/64/stop-circled.png"
