@@ -13,7 +13,7 @@ function ExperienceSection() {
                         {/* Repeated item */}
                         <WorkExperienceElement
                             date="Feb, 2022 – Jul 2023"
-                            title="Machine Learning Engineer"
+                            title="Machine Learning Engineer @English Central"
                             description={[
                                 'Developed a rating tool for efficient labeling at Phoeme, Word, and utterance Level.',
                                 'Led the creation of a three level labeled dataset using a Kappa voting system.',
@@ -25,7 +25,7 @@ function ExperienceSection() {
                         {/* Repeated item */}
                         <WorkExperienceElement
                             date="Jun, 2021 – Feb, 2022"
-                            title="Product Analysis"
+                            title="Product Analysis @English Central"
                             description={[
                                 'Conducted statistical analysis on various projects to optimize gross.',
                                 'Collaborated with content and marketing teams by providing analytics to project the user\'s behaviour and interests.',
@@ -37,7 +37,7 @@ function ExperienceSection() {
                         {/* Repeated item */}
                         <WorkExperienceElement
                             date="Sep, 2020 – Jun, 2021"
-                            title="Teacher Assistant"
+                            title="Teacher Assistant @Bilkent University"
                             description={[
                                 'Conducted lab sessions to augment professors\' lectures on Algorithms and database courses.',
                                 'Provided Q&A Sessions for project progress reports.',
@@ -50,7 +50,7 @@ function ExperienceSection() {
                         {/* Repeated item */}
                         <WorkExperienceElement
                             date="Jan, 2020 – Sep, 2020"
-                            title="Full Stack Developer"
+                            title="Full Stack Developer @Dimension 14"
                             description={[
                                 'Mined Customer usage data for customer acquisition.',
                                 'Conducted behavior-driven tests on products using Selenium and Cucumber for software reliability insurance.',
