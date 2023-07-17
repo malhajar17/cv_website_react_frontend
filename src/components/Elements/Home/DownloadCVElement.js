@@ -60,7 +60,7 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
     };
 
     const cvElementStyle = isMobileDevice() 
-        ? { transform: 'scale(0.65)translateY(250px)', transition: 'transform 0.3s ease-in-out' } 
+        ? { transform: 'scale(0.6)translateY(250px)', transition: 'transform 0.3s ease-in-out' } 
         : { transform: 'translateY(-180px)', transition: 'transform 0.3s ease-in-out', marginTop: '180px'};
     const handleLinkedInLogin = async () => {
         window.location.href = "https://www.linkedin.com/in/muhammet-alhajar-69a069163/";
@@ -140,29 +140,58 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
                         </div>
                         {isFieldHighlighted(3) ? <span className="error-message">Please enter valid linkedin profile link</span> : ''}
                         <div className="u-align-center u-form-group u-form-submit">
-                            <button type="submit" className="u-btn u-btn-submit u-button-style"
-                            style={{ marginRight: '20px',
-                                    backgroundColor: '#FF884D',
-                                    color: 'white',
-                                    width: '250px',
-                                    height: '44px',
-                                    display: 'inline-flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    padding: '0 10px'
-                             }}>
-                                Start Interview</button>
-                            <button type="button" className="u-btn u-btn-submit u-button-style" onClick={handleLinkedInLogin}
-                                        style={{ backgroundColor: '#0077b5', color: 'white',  width: '250px', height: '44px' ,
-                                        display: 'inline-flex',  // Use inline-flex instead of flex
-                                        alignItems: 'center',  // Vertically center the content
-                                        justifyContent: 'center',  // Horizontally center the content
-                                        padding: '0 10px'    }}>
-                                <img src="https://cvfrontendstorage.blob.core.windows.net/front-end-photos/linkedin.png" alt="LinkedIn Logo" style={{ marginLeft: '-15px',marginRight:'10px', width: '25px', height: '25px' }} />
-                                Visit my Linkedin Profile
-                            </button>
-                            <input type="submit" value="submit" className="u-form-control-hidden" />
-                        </div>
+  <button
+    type="submit"
+    className="u-btn u-btn-submit u-button-style"
+    style={{
+      marginRight: isMobileDevice() ? '10px' : '20px',
+      backgroundColor: '#FF884D',
+      color: 'white',
+      width: isMobileDevice() ? '150px' : '250px',
+      height: '44px',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '0 10px'
+    }}
+  >
+    Start Interview
+  </button>
+  <button
+    type="button"
+    className="u-btn u-btn-submit u-button-style"
+    onClick={handleLinkedInLogin}
+    style={{
+      backgroundColor: '#0077b5',
+      color: 'white',
+      width: isMobileDevice() ? '150px' : '250px',
+      height: '44px',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '0 10px'
+    }}
+  >
+    <img
+      src="https://cvfrontendstorage.blob.core.windows.net/front-end-photos/linkedin.png"
+      alt="LinkedIn Logo"
+      style={{
+        marginLeft: isMobileDevice() ? '-10px' : '-15px',
+        marginRight: isMobileDevice() ? '5px' : '10px',
+        width: isMobileDevice() ? '20px' : '25px',
+        height: isMobileDevice() ? '20px' : '25px'
+      }}
+    />
+    <span
+      style={{
+        fontSize: isMobileDevice() ? '14px' : '16px',
+        fontWeight: 'bold'
+      }}
+    >
+    LinkedIn Profile
+    </span>
+  </button>
+</div>
                     </form>
                 </div>
             </div>
