@@ -152,7 +152,9 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '0 10px'
+      padding: '0 10px',
+     fontSize: isMobileDevice() ? '14px' : '16px',
+        fontWeight: 'bold'
     }}
   >
     Start Interview
