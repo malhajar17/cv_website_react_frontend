@@ -53,7 +53,6 @@ function App() {
                         <ExperienceSection />
                         <CertificatesSection />
                         <AboutMeSection />
-                        <SchedInterviewSection />
                     </>
                 )}
             </div>

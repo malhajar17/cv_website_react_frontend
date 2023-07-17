@@ -10,7 +10,10 @@ function WorkExperienceElement({ date, title, description, link }) {
                     <div className="u-container-layout u-container-layout-2">
                         <h5 className="u-custom-font u-text u-text-default u-text-palette-3-base u-text-4">{title}</h5>
                         <ul className="u-text u-text-palette-5-light-1 u-text-5">
-                            <li>{description}</li>
+                                {description.map((item, index) => (
+                                    <li key={index}>{item}</li>
+                                ))}
+
                         </ul>
                         <a href={link} className="u-active-none u-btn u-button-style u-hover-none u-none u-text-body-alt-color u-btn-1">Learn More</a>
                     </div>

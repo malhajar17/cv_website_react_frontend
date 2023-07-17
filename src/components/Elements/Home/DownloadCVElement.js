@@ -62,7 +62,9 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
     const cvElementStyle = isMobileDevice() 
         ? { transform: 'scale(0.65)translateY(250px)', transition: 'transform 0.3s ease-in-out' } 
         : { transform: 'translateY(-180px)', transition: 'transform 0.3s ease-in-out', marginTop: '180px'};
-
+    const handleLinkedInLogin = async () => {
+        window.location.href = "https://www.linkedin.com/in/muhammet-alhajar-69a069163/";
+    }
     return (
         <animated.div style={{ ...fade, ...cvElementStyle }} className="download-cv-component u-align-left u-container-style u-layout-cell u-size-27-lg u-size-27-xl u-size-60-md u-size-60-sm u-size-60-xs u-layout-cell-1">
             <div className="u-container-layout u-container-layout-1">
@@ -138,7 +140,27 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
                         </div>
                         {isFieldHighlighted(3) ? <span className="error-message">Please enter valid linkedin profile link</span> : ''}
                         <div className="u-align-center u-form-group u-form-submit">
-                            <button type="submit" className="u-btn u-btn-submit u-button-style">Start Interview</button>
+                            <button type="submit" className="u-btn u-btn-submit u-button-style"
+                            style={{ marginRight: '20px',
+                                    backgroundColor: '#FF884D',
+                                    color: 'white',
+                                    width: '250px',
+                                    height: '44px',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    padding: '0 10px'
+                             }}>
+                                Start Interview</button>
+                            <button type="button" className="u-btn u-btn-submit u-button-style" onClick={handleLinkedInLogin}
+                                        style={{ backgroundColor: '#0077b5', color: 'white',  width: '250px', height: '44px' ,
+                                        display: 'inline-flex',  // Use inline-flex instead of flex
+                                        alignItems: 'center',  // Vertically center the content
+                                        justifyContent: 'center',  // Horizontally center the content
+                                        padding: '0 10px'    }}>
+                                <img src="https://cvfrontendstorage.blob.core.windows.net/front-end-photos/linkedin.png" alt="LinkedIn Logo" style={{ marginLeft: '-15px',marginRight:'10px', width: '25px', height: '25px' }} />
+                                Visit my Linkedin Profile
+                            </button>
                             <input type="submit" value="submit" className="u-form-control-hidden" />
                         </div>
                     </form>

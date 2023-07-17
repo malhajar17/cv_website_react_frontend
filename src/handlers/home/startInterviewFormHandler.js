@@ -79,9 +79,10 @@ const startInterviewHandler = {
     },
 
     isValidLinkedInProfile: (linkedinProfile) => {
-        // Implement your LinkedIn profile validation logic here
-        return /^https?:\/\/(www\.)?linkedin\.com\/in\/[\w-]+\/?$/.test(linkedinProfile);
-    },
+        const linkedinUrl = "linkedin.com/in/";
+    
+        return linkedinProfile.includes(linkedinUrl);
+    }
 };
 
 export default startInterviewHandler;

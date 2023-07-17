@@ -12,14 +12,14 @@ function ExperienceSection() {
                     <div className="u-repeater u-repeater-1">
                         {/* Repeated item */}
                         <WorkExperienceElement
-                            date="Feb, 2022 – Ongoing"
+                            date="Feb, 2022 – Jul 2023"
                             title="Machine Learning Engineer"
                             description={[
                                 'Developed a rating tool for efficient labeling at Phoeme, Word, and utterance Level.',
                                 'Led the creation of a three level labeled dataset using a Kappa voting system.',
                                 'Implemented parts of an automated language teaching bot through prompt engineering and GPT technologies.'
                             ]}
-                            link="https://nicepage.com/c/art-design-website-templates"
+                            link="#"
                         />
                         {/* End of repeated item */}
                         {/* Repeated item */}
@@ -31,7 +31,7 @@ function ExperienceSection() {
                                 'Collaborated with content and marketing teams by providing analytics to project the user\'s behaviour and interests.',
                                 'Analyzed campaign performances and provided feedback on strategies.'
                             ]}
-                            link="https://nicepage.cloud"
+                            link="#"
                         />
                         {/* End of repeated item */}
                         {/* Repeated item */}
@@ -44,7 +44,7 @@ function ExperienceSection() {
                                 'Graded students projects and tests.',
                                 'Aided in the successful completion of over 9 projects over 3 courses.'
                             ]}
-                            link="https://nicepage.review"
+                            link="#"
                         />
                         {/* End of repeated item */}
                         {/* Repeated item */}
@@ -56,7 +56,7 @@ function ExperienceSection() {
                                 'Conducted behavior-driven tests on products using Selenium and Cucumber for software reliability insurance.',
                                 'Maintained legacy systems through reverse engineering techniques for project comprehension and bug fixes.'
                             ]}
-                            link="https://nicepage.com/website-builder"
+                            link="#"
                         />
                         {/* End of repeated item */}
                     </div>
