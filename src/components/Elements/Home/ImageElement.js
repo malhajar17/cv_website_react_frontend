@@ -122,6 +122,12 @@
                             <div className="bubble" style={{ opacity: opacity[0] }}></div>
                         </div>
                     )}
+                    {state === "warm_up" && (
+                        <div className="thought-bubble"  style={thoughtBubbleStyle}>
+                            <div className="cloud">Preparing the interview session</div>
+                            <div className="bubble" style={{ opacity: opacity[0] }}></div>
+                        </div>
+                    )}
                 </div>
             </animated.div>
         );

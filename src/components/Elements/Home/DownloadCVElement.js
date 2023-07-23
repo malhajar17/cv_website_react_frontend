@@ -4,7 +4,7 @@ import { animated, useSpring } from 'react-spring';
 import StartInterviewFormHandler from "../../../handlers/home/startInterviewFormHandler";
 import startInterviewService from "../../../services/startInterviewService"
 
-const DownloadCVElement = ({ startInterview, onStartInterview }) => {
+const DownloadCVElement = ({ startInterview, onStartInterview,onStartInterviewButtonPressed }) => {
     const {userSessionInfo, updateUserSessionInfo } = useContext(UserContext);
     const [formData, setFormData] = useState({
         firstName: "guest_user",
@@ -23,7 +23,9 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
     const handleStartInterview = async () => {
+        onStartInterviewButtonPressed()
         const errors = StartInterviewFormHandler.validateForm(formData);
+        
         if (Object.keys(errors).length === 0) {
             const { accountID, sessionID, get_auth_ready } = await startInterviewService.postInterviewRequest(formData);
             if (get_auth_ready === true) {
@@ -98,7 +100,7 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
                                 name="firstName"
                                 className={`u-border-3 u-border-white u-grey-5 u-input u-input-rectangle u-text-body-color ${isFieldHighlighted(0) ? 'highlighted-input' : ''}`}
                                 onChange={handleChange}
-                                required
+                                
                             />
 
                         </div>
@@ -110,7 +112,7 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
                                 name="lastName"
                                 className={`u-border-3 u-border-white u-grey-5 u-input u-input-rectangle u-text-body-color ${isFieldHighlighted(1) ? 'highlighted-input' : ''}`}
                                 onChange={handleChange}
-                                required
+                                
                             />
                         </div>
                         <div className={`u-form-email u-form-group ${isFieldHighlighted(2) ? 'highlighted-field' : ''}`}>
@@ -121,7 +123,7 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
                                 name="email"
                                 className={`u-border-3 u-border-white u-grey-5 u-input u-input-rectangle u-text-body-color ${isFieldHighlighted(2) ? 'highlighted-input' : ''}`}
                                 onChange={handleChange}
-                                required
+                                
                             />
                         </div>
                         {isFieldHighlighted(2) ? <span className="error-message">Please use a valid email address</span> : ''}
@@ -135,7 +137,7 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
                                 name="linkedinProfile"
                                 className={`u-border-3 u-border-white u-grey-5 u-input u-input-rectangle u-text-body-color ${isFieldHighlighted(3) ? 'highlighted-input' : ''}`}
                                 onChange={handleChange}
-                                required
+                                
                             />
                         </div>
                         {isFieldHighlighted(3) ? <span className="error-message">Please enter valid linkedin profile link</span> : ''}

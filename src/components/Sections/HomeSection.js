@@ -14,8 +14,12 @@ const HomeSection = ({ startInterview, setStartInterview }) => {
     const [state, setState] = useState("not_started");
 
     const handleStartInterview = () => {
+        setState("not_started");
         setStartInterview(true);
     };
+    const handleStartInterviewButtonPressed = () => {
+        setState("warm_up");
+    }
     const handleAnimationFinished = () => {
         setAnimationFinished(true);
     };
@@ -44,7 +48,7 @@ const HomeSection = ({ startInterview, setStartInterview }) => {
             <div className="u-clearfix u-layout-wrap u-layout-wrap-1">
                 <div className="u-gutter-0 u-layout">
                     <div className="u-layout-row image-lower smaller-container">
-                        <DownloadCVElement startInterview={startInterview} onStartInterview={handleStartInterview} />
+                        <DownloadCVElement startInterview={startInterview} onStartInterview={handleStartInterview} onStartInterviewButtonPressed={handleStartInterviewButtonPressed} />
                         <ImageElement startInterview={startInterview} onAnimationComplete={handleAnimationFinished} isPlaying={isPlaying} state={state} />
                         {state === "end_interview" && <EndInterviewElement onEndInterview={handleEndInterview} onEndInterviewClose ={handleEndInterviewClose} />}
                     </div>
