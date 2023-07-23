@@ -47,14 +47,14 @@ const startInterviewHandler = {
         const errors = {};
 
         // Validate first name
-        if (!formData.firstName) {
-            errors.firstName = "First name is required";
-        }
+        //  if (!formData.firstName) {
+           // errors.firstName = "First name is required";
+       //   }
 
         // Validate last name
-        if (!formData.lastName) {
-            errors.lastName = "Last name is required";
-        }
+        //  if (!formData.lastName) {
+            //errors.lastName = "Last name is required";
+        //  }
 
         // Validate email
         if (!formData.email) {
@@ -75,13 +75,13 @@ const startInterviewHandler = {
 
     isValidEmail: (email) => {
         // Implement your email validation logic here
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        return true;
     },
 
     isValidLinkedInProfile: (linkedinProfile) => {
         const linkedinUrl = "linkedin.com/in/";
     
-        return linkedinProfile.includes(linkedinUrl);
+        return true
     }
 };
 

@@ -7,10 +7,10 @@ import startInterviewService from "../../../services/startInterviewService"
 const DownloadCVElement = ({ startInterview, onStartInterview }) => {
     const {userSessionInfo, updateUserSessionInfo } = useContext(UserContext);
     const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        linkedinProfile: "",
+        firstName: "guest_user",
+        lastName: "guest_user_ln",
+        email: "guest_user@gmail.com",
+        linkedinProfile: "guest_user_linkedin",
     });
     const [highlightedFields, setHighlightedFields] = useState([]);
 
@@ -37,7 +37,7 @@ const DownloadCVElement = ({ startInterview, onStartInterview }) => {
                 }
             }
             else {
-                alert("Sorry, You have been blocked from performing interviews at the moment. Please send an email to fix this")
+                alert("Sorry, We are a bit busy with requests. Please try again in a few minutes.")
             }
         } else {
 
