@@ -76,7 +76,7 @@ const DownloadCVElement = ({ startInterview, onStartInterview,onStartInterviewBu
                 {!isMobileDevice() && (
                         <p className="u-align-left u-text u-text-palette-5-light-2 u-text-3">
                             Date of Birth: <span style={{ fontWeight: 400 }}>Jan 31, 1998</span><br />
-                            E-mail: <span style={{ fontWeight: 400 }}><a  className="u-active-none u-border-1 u-border-active-palette-5-light-2 u-border-hover-palette-5-light-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-button-link u-button-style u-hover-none u-none u-radius-0 u-text-active-palette-5-light-2 u-text-body-alt-color u-text-hover-palette-5-light-2 u-top-left-radius-0 u-top-right-radius-0 u-btn-1">malhajar17@ku.edu.tr</a></span><br />
+                            E-mail: <span style={{ fontWeight: 400 }}><a  className="u-active-none u-border-1 u-border-active-palette-5-light-2 u-border-hover-palette-5-light-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-button-link u-button-style u-hover-none u-none u-radius-0 u-text-active-palette-5-light-2 u-text-body-alt-color u-text-hover-palette-5-light-2 u-top-left-radius-0 u-top-right-radius-0 u-btn-1">alhajjarmohamed@gmail.com</a></span><br />
                             Phone: <span style={{ fontWeight: 400 }}>+90 544 565 98 91</span>
                         </p>
                         )}
