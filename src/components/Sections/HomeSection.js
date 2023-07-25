@@ -14,11 +14,12 @@ const HomeSection = ({ startInterview, setStartInterview }) => {
     const [state, setState] = useState("not_started");
 
     const handleStartInterview = () => {
-        setState("not_started");
+        setState("started");
         setStartInterview(true);
     };
     const handleStartInterviewButtonPressed = () => {
         setState("warm_up");
+        setStartInterview(false);
     }
     const handleAnimationFinished = () => {
         setAnimationFinished(true);

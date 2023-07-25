@@ -98,7 +98,7 @@
 
         const thoughtBubbleStyle = isMobileDevice() 
         ? { transform: 'scale(0.6) translateX(-40px) translateY(-200px)' } 
-        : {};
+        : {   position: 'absolute'};
 
         return (
             <animated.div className="" style={animatePhoto}>
