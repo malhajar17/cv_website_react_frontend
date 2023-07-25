@@ -69,7 +69,6 @@
 .thought-bubble {
 
     display: flex;
-    position: absolute;
     flex-direction: column;
     align-items: center;
     height: 200px;
