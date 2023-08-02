@@ -63,7 +63,7 @@ const DownloadCVElement = ({ startInterview, onStartInterview,onStartInterviewBu
 
     const cvElementStyle = isMobileDevice() 
         ? { transform: 'scale(0.6)translateY(250px)', transition: 'transform 0.3s ease-in-out' } 
-        : { transform: 'translateY(-180px)', transition: 'transform 0.3s ease-in-out', marginTop: '180px'};
+        : { transform: 'scale(0.85)translateY(-180px)', transition: 'transform 0.3s ease-in-out', marginTop: '180px'};
     const handleLinkedInLogin = async () => {
         window.location.href = "https://www.linkedin.com/in/muhammet-alhajar-69a069163/";
     }
